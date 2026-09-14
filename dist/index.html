@@ -14,7 +14,7 @@
     header{display:flex;align-items:center;justify-content:space-between;margin-bottom:24px}.brand{display:flex;align-items:center;gap:11px;font-weight:850;font-size:1.2rem}.logo{width:38px;height:38px;border-radius:13px;background:var(--ink);display:grid;place-items:center;color:var(--mint);font-size:1.25rem}.status{font-size:.82rem;color:var(--muted);background:#fff;border:1px solid var(--line);padding:7px 11px;border-radius:999px}
     main{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(330px,.95fr);gap:22px}.panel{background:var(--card);border:1px solid rgba(16,24,40,.08);border-radius:28px;padding:clamp(20px,3vw,30px);box-shadow:0 16px 42px rgba(16,24,40,.07)}
     .eyebrow{font-size:.78rem;font-weight:800;letter-spacing:.08em;color:var(--blue);text-transform:uppercase}.intro h1{font-size:clamp(1.75rem,5vw,2.7rem);line-height:1.06;letter-spacing:-.04em;margin:8px 0 10px}.intro p{color:var(--muted);margin:0 0 25px;max-width:40em}
-    .field{margin-top:20px}.label{font-weight:800;margin-bottom:10px;display:flex;align-items:center;justify-content:space-between}.optional{font-size:.78rem;font-weight:500;color:var(--muted)}.choices{display:flex;flex-wrap:wrap;gap:9px}.chip{border:1px solid var(--line);background:#fff;color:var(--ink);padding:10px 14px;border-radius:14px;min-height:44px;transition:.15s}.chip:hover{border-color:#aab5c5}.chip.active{background:var(--ink);border-color:var(--ink);color:#fff;box-shadow:0 5px 12px rgba(16,24,40,.18)}
+    .field{margin-top:20px}.label{font-weight:800;margin-bottom:10px;display:flex;align-items:center;justify-content:space-between}.optional{font-size:.78rem;font-weight:500;color:var(--muted)}.choices{display:flex;flex-wrap:wrap;gap:9px}.chip{border:1px solid var(--line);background:#fff;color:var(--ink);padding:10px 14px;border-radius:14px;min-height:44px;transition:.15s}.chip:hover{border-color:#aab5c5}.chip.active{background:var(--ink);border-color:var(--ink);color:#fff;box-shadow:0 5px 12px rgba(16,24,40,.18)}.field-error{display:none;color:var(--danger);font-size:.88rem;margin-top:9px}.field.has-error .field-error{display:block}.field.has-error .choices{outline:2px solid rgba(180,35,24,.2);outline-offset:5px;border-radius:10px}
     select,textarea{width:100%;border:1px solid var(--line);border-radius:14px;background:#fff;color:var(--ink);padding:12px 14px;min-height:48px;outline:none}textarea{resize:vertical;min-height:76px}select:focus,textarea:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(43,89,255,.1)}
     .generate{width:100%;margin-top:24px;border:0;border-radius:16px;background:var(--mint);color:var(--ink);font-weight:900;padding:15px 18px;min-height:54px;box-shadow:0 8px 0 #42c88d;transition:.15s}.generate:active{transform:translateY(4px);box-shadow:0 4px 0 #42c88d}
     .result{background:var(--ink);color:#fff;position:sticky;top:18px;overflow:hidden}.result:before{content:"";position:absolute;width:210px;height:210px;border-radius:50%;background:var(--mint);filter:blur(90px);opacity:.16;right:-60px;top:-80px}.result h2{font-size:1rem;margin:0 0 18px;color:#b8c2d4}.starter{font-size:clamp(1.35rem,3.2vw,1.85rem);font-weight:800;line-height:1.35;letter-spacing:-.02em;margin:0 0 18px;position:relative}.reason{font-size:.92rem;color:#b8c2d4;border-left:3px solid var(--mint);padding-left:12px;margin-bottom:24px}.next{display:grid;gap:10px}.next-card{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:14px}.next-card b{color:var(--mint);font-size:.78rem}.next-card p{margin:5px 0 0}.exit{margin-top:18px;padding-top:18px;border-top:1px solid rgba(255,255,255,.15);color:#d6dbea}.exit strong{color:#fff}.signal{margin-top:18px;background:var(--mint2);color:#165b3d;border-radius:15px;padding:13px;font-size:.87rem}.copy{margin-top:18px;width:100%;min-height:46px;border-radius:14px;border:1px solid rgba(255,255,255,.25);background:transparent;color:#fff;font-weight:750}.copy.done{background:var(--mint);color:var(--ink);border-color:var(--mint)}
@@ -32,20 +32,20 @@
       <div class="eyebrow">临场搭话助手</div>
       <h1 id="title">现在，你在什么场景？</h1>
       <p>不用表现得很会聊。选几个线索，我帮你组织一句自然、不过界的开场。</p>
-      <div class="field"><div class="label">场景</div><div class="choices" data-group="scene">
-        <button class="chip active" data-value="同一桌/聚会">同一桌 / 聚会</button><button class="chip" data-value="排队">排队</button><button class="chip" data-value="电梯/等候区">电梯 / 等候区</button><button class="chip" data-value="咖啡店/书店">咖啡店 / 书店</button><button class="chip" data-value="课程/活动">课程 / 活动</button><button class="chip" data-value="工作场合">工作场合</button>
-      </div></div>
+      <div class="field" id="sceneField"><div class="label">场景</div><div class="choices" data-group="scene" aria-describedby="sceneError">
+        <button class="chip" data-value="同一桌/聚会">同一桌 / 聚会</button><button class="chip" data-value="排队">排队</button><button class="chip" data-value="电梯/等候区">电梯 / 等候区</button><button class="chip" data-value="咖啡店/书店">咖啡店 / 书店</button><button class="chip" data-value="课程/活动">课程 / 活动</button><button class="chip" data-value="工作场合">工作场合</button>
+      </div><div class="field-error" id="sceneError" role="alert">请先选择一个场景</div></div>
       <div class="field"><div class="label">对方状态</div><div class="choices" data-group="group">
         <button class="chip active" data-value="一个人">一个人</button><button class="chip" data-value="两个人">两个人</button><button class="chip" data-value="多人一起">多人一起</button>
       </div></div>
       <div class="field"><div class="label">大概年龄</div><div class="choices" data-group="age">
-        <button class="chip active" data-value="同龄">和我差不多</button><button class="chip" data-value="年长">比我年长</button><button class="chip" data-value="年轻">比我年轻</button><button class="chip" data-value="不确定">看不准</button>
+        <button class="chip active" data-value="同龄">和我差不多</button><button class="chip" data-value="年长">比我年长</button><button class="chip" data-value="年轻">比我年轻</button>
       </div></div>
       <div class="field"><div class="label">对方性别 <span class="optional">只用于称呼，不套模板</span></div><div class="choices" data-group="gender">
-        <button class="chip active" data-value="不重要">不重要</button><button class="chip" data-value="男">男</button><button class="chip" data-value="女">女</button><button class="chip" data-value="不确定">不确定</button>
+        <button class="chip active" data-value="不重要">不重要</button><button class="chip" data-value="男">男</button><button class="chip" data-value="女">女</button>
       </div></div>
-      <div class="field"><label class="label" for="style">整体形象 / 打扮</label><select id="style"><option>普通休闲</option><option>运动户外</option><option>商务正式</option><option>文艺或有明显兴趣元素</option><option>看不出来 / 不想判断</option></select></div>
-      <div class="field"><label class="label" for="mood">对方看起来</label><select id="mood"><option>放松、没有在忙</option><option>正在做事，但不匆忙</option><option>有点拘谨或安静</option><option>戴耳机、看手机或明显很忙</option></select></div>
+      <div class="field"><label class="label" for="style">整体形象 / 打扮</label><select id="style"><option value="" selected disabled>请选择</option><option>普通休闲</option><option>运动户外</option><option>商务正式</option><option>文艺或有明显兴趣元素</option></select></div>
+      <div class="field"><label class="label" for="mood">对方看起来</label><select id="mood"><option value="" selected disabled>请选择</option><option>放松、没有在忙</option><option>正在做事，但不匆忙</option><option>有点拘谨或安静</option><option>戴耳机、看手机或明显很忙</option></select></div>
       <div class="field"><label class="label" for="detail">可聊的现场细节 <span class="optional">可不填</span></label><textarea id="detail" placeholder="例如：拿着一本书、穿着球队外套、大家刚听完讲座……"></textarea></div>
       <button class="generate" id="generate">给我一句自然的开场</button>
       <div class="calm"><strong>其实，安静不等于你做错了。</strong> 如果你只是想让气氛松一点，一句和现场有关的话就够了，不需要负责把整段对话撑起来。</div>
@@ -65,8 +65,8 @@
   </main>
 </div>
 <script>
-  const state={scene:'同一桌/聚会',group:'一个人',age:'同龄',gender:'不重要'};
-  document.querySelectorAll('[data-group]').forEach(group=>group.addEventListener('click',e=>{const b=e.target.closest('.chip');if(!b)return;group.querySelectorAll('.chip').forEach(x=>x.classList.remove('active'));b.classList.add('active');state[group.dataset.group]=b.dataset.value;}));
+  const state={scene:null,group:'一个人',age:'同龄',gender:'不重要'};
+  document.querySelectorAll('[data-group]').forEach(group=>group.addEventListener('click',e=>{const b=e.target.closest('.chip');if(!b)return;group.querySelectorAll('.chip').forEach(x=>x.classList.remove('active'));b.classList.add('active');state[group.dataset.group]=b.dataset.value;if(group.dataset.group==='scene')document.querySelector('#sceneField').classList.remove('has-error');}));
   const scripts={
     '同一桌/聚会':d=>d?`“嗨，我刚注意到${d}。你和这里的朋友都认识吗？”`:'“嗨，你也是第一次来吗？我刚到，还有点没认全人。”',
     '排队':d=>d?`“看起来大家都在等这个。你之前试过${d}吗？”`:'“这队比我想象中快一点，你之前来过吗？”',
@@ -76,6 +76,7 @@
     '工作场合':d=>d?`“刚才提到${d}，我还挺感兴趣的。你平时也会接触这块吗？”`:'“我们好像还没正式认识，我叫小林。你主要负责哪一块？”'
   };
   function generate(){
+    if(!state.scene){document.querySelector('#sceneField').classList.add('has-error');document.querySelector('[data-group="scene"]').scrollIntoView({behavior:'smooth',block:'center'});return;}
     const mood=document.querySelector('#mood').value,detail=document.querySelector('#detail').value.trim().replace(/[。？！,.!?]+$/,'');
     let starter=scripts[state.scene](detail),reason='从共同处境开始，不评价外貌，也给对方一个很容易回答的入口。';
     if(state.group==='多人一起'){const groupOpen={'同一桌/聚会':'“嗨，我好像还没和大家认识。我叫小林，你们都是怎么认识的？”','排队':'“打扰一下，你们也在排这边吗？我怕自己站错队了。”','电梯/等候区':'“打扰一下，你们也是在等这边叫号吗？”','咖啡店/书店':'“打扰一下，你们好像对这里挺熟，有没有比较推荐的？”','课程/活动':'“嗨，你们也是第一次来这个活动吗？”','工作场合':'“嗨，我们好像还没正式认识。我叫小林，你们主要负责哪一块？”'};starter=groupOpen[state.scene];reason='先对整个小群体说话，避免只盯着其中一个人，让所有人都容易接话。'}
