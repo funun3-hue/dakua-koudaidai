@@ -114,7 +114,7 @@ async function generateWithDeepSeek(input, env) {
       'authorization': `Bearer ${env.DEEPSEEK_API_KEY}`
     },
     body: JSON.stringify({
-      model: env.DEEPSEEK_MODEL || 'deepseek-chat',
+      model: env.DEEPSEEK_MODEL || 'deepseek-flash',
       messages: [
         { role: 'system', content: '你是谨慎、自然的现实社交表达助手。必须输出有效 JSON，不得输出 Markdown。' },
         { role: 'user', content: buildPrompt(input) }

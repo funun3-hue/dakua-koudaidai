@@ -34,14 +34,18 @@ test('requires a server-side DeepSeek key', async () => {
 test('returns normalized structured advice', async (t) => {
   const originalFetch = globalThis.fetch;
   t.after(() => { globalThis.fetch = originalFetch; });
-  globalThis.fetch = async () => new Response(JSON.stringify({
-    choices: [{ message: { content: JSON.stringify({
+  globalThis.fetch = async (_url, options) => {
+    const requestBody = JSON.parse(options.body);
+    assert.equal(requestBody.model, 'deepseek-flash');
+    return new Response(JSON.stringify({
+      choices: [{ message: { content: JSON.stringify({
       shouldApproach: true,
       starter: '“你也喜欢旅行类的书吗？”', reason: '来自现场细节。',
       follow: '“你最推荐哪一本？”', light: '“明白，你继续看吧。”',
       exit: '“谢谢，不打扰你看书了。”', signal: '对方继续低头看书时结束。'
-    }) } }]
-  }), { status: 200, headers: { 'content-type': 'application/json' } });
+      }) } }]
+    }), { status: 200, headers: { 'content-type': 'application/json' } });
+  };
   const request = new Request('https://api.example/api/generate', {
     method: 'POST', headers: { origin, 'content-type': 'application/json', 'CF-Connecting-IP': 'test-ip' },
     body: JSON.stringify(validInput)
