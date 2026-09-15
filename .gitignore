@@ -1,2 +1,5 @@
 site-package.tar.gz
 .sites-runtime/
+backend/.dev.vars
+backend/node_modules/
+.wrangler/

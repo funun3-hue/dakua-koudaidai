@@ -1,0 +1,7 @@
+name = "dakua-koudaidai-api"
+main = "src/worker.js"
+compatibility_date = "2026-09-15"
+
+[vars]
+ALLOWED_ORIGIN = "https://funun3-hue.github.io"
+DEEPSEEK_MODEL = "deepseek-chat"
